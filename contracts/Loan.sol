@@ -1,4 +1,5 @@
 pragma solidity ^0.5.0;
+
 contract Loan {
     address public lender;
     address public borrower;
@@ -12,8 +13,6 @@ contract Loan {
     }
 
     RePayment[] public rePayments;
-    mapping(address => RePayment[]) public borrowerToRePayments;
-    mapping(address => address) public borrowerToLender;
 
     modifier onlyLender() {
         require(msg.sender == lender);
@@ -30,13 +29,17 @@ contract Loan {
         _;
     }
 
-    constructor(address _borrower) public {
-        lender = msg.sender;
-        borrower = _borrower;
-        borrowerToLender[borrower] = msg.sender;
+    constructor(address _lender) public {
+        lender = _lender;
+
     }
 
-    function addAllRepaymentSchedules(bytes32[] memory _bytes32Arr) public onlyLender minimumAndMaximumTenor(_bytes32Arr) {
+    function setBorrower(address _newBorrower) public onlyLender {
+        borrower = _newBorrower;
+    }
+
+    function addAllRepaymentSchedules(bytes32[] memory _bytes32Arr, address _newBorrower) public onlyLender minimumAndMaximumTenor(_bytes32Arr) {
+        borrower = _newBorrower;
         for (uint i = 0; i < _bytes32Arr.length - 5; i+=5) {
             string memory date = bytes32ToString(_bytes32Arr[i]);
             string memory balance = bytes32ToString(_bytes32Arr[i + 1]);
@@ -45,15 +48,16 @@ contract Loan {
             string memory principal = bytes32ToString(_bytes32Arr[i + 4]);
             rePayments.push(RePayment(date, balance, payment, interest, principal, false)) - 1;
         }
-        borrowerToRePayments[borrower] = rePayments;
+        // borrowerToRePayments[borrower] = rePayments;
     }
 
     function checkRepaymentStatus(uint _month) public view returns (bool) {
-        return borrowerToRePayments[borrower][_month].monthToIsPaid;
+        // return borrowerToRePayments[borrower][_month].monthToIsPaid;
+        return rePayments[_month].monthToIsPaid;
     }
 
     function markRePaymentAsPaid(uint _month) onlyLender public  {
-        borrowerToRePayments[borrower][_month].monthToIsPaid = true;
+        // borrowerToRePayments[borrower][_month].monthToIsPaid = true;
         rePayments[_month].monthToIsPaid = true;
     }
 
