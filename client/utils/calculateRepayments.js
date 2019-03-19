@@ -19,30 +19,6 @@ export default (startDate, tenor, interestRatePerYear, balanceRequested, origina
         repaymentSchedulesHexArr.push('0x' + new Buffer(String(schedules[i].interest)).toString('hex'));
         repaymentSchedulesHexArr.push('0x' + new Buffer(String(schedules[i].principal)).toString('hex'));
     }
-
-    // let repaymentSchedulesHexArrString = '';
-    // repaymentSchedulesHexArrString += '[';
-    // for (let i = 0; i < schedules.length; i++) {
-    //     repaymentSchedulesHexArrString += '0x' + new Buffer(schedules[i].date).toString('hex');
-    //     repaymentSchedulesHexArrString += ',';
-    //     repaymentSchedulesHexArrString +=
-    //         '0x' + new Buffer(String(schedules[i].balance)).toString('hex');
-    //     repaymentSchedulesHexArrString += ',';
-    //     repaymentSchedulesHexArrString +=
-    //         '0x' + new Buffer(String(schedules[i].payment)).toString('hex');
-    //     repaymentSchedulesHexArrString += ',';
-    //     repaymentSchedulesHexArrString +=
-    //         '0x' + new Buffer(String(schedules[i].interest)).toString('hex');
-    //     repaymentSchedulesHexArrString += ',';
-    //     repaymentSchedulesHexArrString +=
-    //         '0x' + new Buffer(String(schedules[i].principal)).toString('hex');
-    //     if (i === schedules.length - 1) {
-    //         repaymentSchedulesHexArrString += '';
-    //     } else {
-    //         repaymentSchedulesHexArrString += ',';
-    //     }
-    // }
-    // repaymentSchedulesHexArrString += ']';
-    // return repaymentSchedulesHexArrString;
+    debugger;
     return repaymentSchedulesHexArr;
 };

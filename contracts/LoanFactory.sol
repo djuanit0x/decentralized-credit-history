@@ -12,4 +12,8 @@ contract LoanFactory {
     function getDeployedLoans() public view returns(address[] memory) {
         return deployedLoans;
     }
+
+    function getDeployedLoansLength() public view returns(uint) {
+        return deployedLoans.length;
+    }
 }

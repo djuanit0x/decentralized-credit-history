@@ -24,9 +24,6 @@ export default class RegisterLoanForm extends Component {
         this.setState({loading: true}, async () => {
             try {
                 const web3 = await getWeb3();
-                debugger;
-
-                console.dir(web3);
                 const accounts = await web3.eth.getAccounts();
                 const networkId = await web3.eth.net.getId();
                 const deployedNetwork = LoanFactory.networks[networkId];
@@ -35,7 +32,9 @@ export default class RegisterLoanForm extends Component {
                     LoanFactory.abi,
                     deployedNetwork.address
                 );
+
                 await loanFactoryInstance.methods.createLoan().send({from: accounts[0]});
+
                 let {
                     // loanTitle,
                     borrowerAddress,
@@ -56,7 +55,13 @@ export default class RegisterLoanForm extends Component {
                 );
 
                 const deployedLoanContract = await loanFactoryInstance.methods.getDeployedLoans().call();
-                const loanInstance = new web3.eth.Contract(Loan.abi, deployedLoanContract[0]);
+                const deployedLoanContractLength = await loanFactoryInstance.methods
+                    .getDeployedLoansLength()
+                    .call();
+                const loanInstance = new web3.eth.Contract(
+                    Loan.abi,
+                    deployedLoanContract[deployedLoanContractLength - 1]
+                );
                 await loanInstance.methods
                     .addAllRepaymentSchedules(calculationSchedules, borrowerAddress)
                     .send({from: accounts[0]});

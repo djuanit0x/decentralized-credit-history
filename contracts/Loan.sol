@@ -40,7 +40,7 @@ contract Loan {
 
     function addAllRepaymentSchedules(bytes32[] memory _bytes32Arr, address _newBorrower) public onlyLender minimumAndMaximumTenor(_bytes32Arr) {
         borrower = _newBorrower;
-        for (uint i = 0; i < _bytes32Arr.length - 5; i+=5) {
+        for (uint i = 0; i <= _bytes32Arr.length - 5; i+=5) {
             string memory date = bytes32ToString(_bytes32Arr[i]);
             string memory balance = bytes32ToString(_bytes32Arr[i + 1]);
             string memory payment = bytes32ToString(_bytes32Arr[i + 2]);
