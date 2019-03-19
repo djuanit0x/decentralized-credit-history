@@ -1,10 +1,48 @@
 import React, {Component} from 'react';
 import LoanFactory from '../contracts/LoanFactory.json';
+import Loan from '../../client/utils/loan';
 import getWeb3 from '../utils/getWeb3';
-
+import Layout from '../components/Layout';
 
 class LoanIndex extends Component {
-    state = {storageValue: 0, web3: null, accounts: null, contract: null};
+    state = {storageValue: 0, web3: null, accounts: null, contract: null, loans: []};
+
+    static async getInitialProps(props) {
+        // const loan = Loan(props.query.address);
+        let deployedLoanContract;
+        try {
+            const web3 = await getWeb3();
+            const networkId = await web3.eth.net.getId();
+            const deployedNetwork = LoanFactory.networks[networkId];
+            const loanFactoryInstance = new web3.eth.Contract(LoanFactory.abi, deployedNetwork.address);
+            deployedLoanContract = await loanFactoryInstance.methods.getDeployedLoans().call();
+        } catch (error) {
+            throw error;
+        }
+
+        return {
+            loans: deployedLoanContract
+        };
+    }
+
+    renderLoans = async () => {
+        console.log(this.props.loans);
+        const promiseArray = await Promise.all(
+            this.props.loans.map(address => {
+                // const loan = Loan(address).then(data => {
+                //     console.log(data);
+                // });
+                const loan = Loan(address);
+                console.log(loan);
+                debugger;
+                return loan;
+            })
+        );
+        console.log(promiseArray);
+        this.state.loans = [...promiseArray];
+        console.log(promiseArray);
+        return {promiseArray};
+    };
 
     componentDidMount = async () => {
         try {
@@ -22,7 +60,6 @@ class LoanIndex extends Component {
 
             // await instance.methods.createLoan().send({from: accounts[0]});
             let deployedLoans = await instance.methods.getDeployedLoans().call();
-
 
             // Set web3, accounts, and contract to the state, and then proceed with an
             // example of interacting with the contract's methods.
@@ -52,11 +89,13 @@ class LoanIndex extends Component {
     };
 
     render() {
-        if (!this.state.web3) {
-            return <div>Loading Web3, accounts, and contract...</div>;
-        }
+        // if (!this.state.web3) {
+        //     return <div>Loading Web3, accounts, and contract...</div>;
+        // }
+        this.renderLoans();
+        console.log(this.state.loans);
         return (
-            <div className='App'>
+            <Layout>
                 <h1>Good to Go!</h1>
                 <p>Your Truffle Box is installed and ready.</p>
                 <h2>Smart Contract Example</h2>
@@ -68,7 +107,8 @@ class LoanIndex extends Component {
                     Try changing the value stored on <strong>line 40</strong> of App.js.
                 </p>
                 <div>The stored value is: {this.state.storageValue}</div>
-            </div>
+                {/* {this.renderLoans()} */}
+            </Layout>
         );
     }
 }

@@ -81,7 +81,7 @@ class RegisterLoanForm extends Component {
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-                <h2 className='ui header'>Register a Loan</h2>
+                <div className='ui small header'>Register a Loan</div>
                 <Form.Field>
                     <label>Loan Title</label>
                     <Input

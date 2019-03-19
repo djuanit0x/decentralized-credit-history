@@ -78,7 +78,8 @@ export default class RegisterLoanForm extends Component {
         return (
             <Layout>
                 <Form onSubmit={this.onSubmit}>
-                    <h2 className='ui header'>Register a Loan</h2>
+                    <h2 className='ui large header'>Register a Loan</h2>
+                    {/* <div className='ui header'>Register a Loan</div> */}
                     <Form.Field>
                         <label>Loan Title</label>
                         <Input
