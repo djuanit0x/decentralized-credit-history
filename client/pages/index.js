@@ -3,9 +3,11 @@ import LoanFactory from '../contracts/LoanFactory.json';
 import Loan from '../../client/utils/loan';
 import getWeb3 from '../utils/getWeb3';
 import Layout from '../components/Layout';
+import {Card, Grid, Button} from 'semantic-ui-react';
+import {Link} from '../routes';
 
 class LoanIndex extends Component {
-    state = {storageValue: 0, web3: null, accounts: null, contract: null, loans: []};
+    state = {web3: null, accounts: null, contract: null, loans: []};
 
     static async getInitialProps(props) {
         // const loan = Loan(props.query.address);
@@ -24,90 +26,53 @@ class LoanIndex extends Component {
             loans: deployedLoanContract
         };
     }
-
-    renderLoans = async () => {
-        console.log(this.props.loans);
-        const promiseArray = await Promise.all(
-            this.props.loans.map(address => {
-                // const loan = Loan(address).then(data => {
-                //     console.log(data);
-                // });
-                const loan = Loan(address);
-                console.log(loan);
-                debugger;
-                return loan;
-            })
-        );
-        console.log(promiseArray);
-        this.state.loans = [...promiseArray];
-        console.log(promiseArray);
-        return {promiseArray};
-    };
-
     componentDidMount = async () => {
         try {
-            // Get network provider and web3 instance.
-            const web3 = await getWeb3();
-
-            // Use web3 to get the user's accounts.
-            const accounts = await web3.eth.getAccounts();
-
-            // Get the contract instance.
-            const networkId = await web3.eth.net.getId();
-            const deployedNetwork = LoanFactory.networks[networkId];
-
-            const instance = new web3.eth.Contract(LoanFactory.abi, deployedNetwork.address);
-
-            // await instance.methods.createLoan().send({from: accounts[0]});
-            let deployedLoans = await instance.methods.getDeployedLoans().call();
-
-            // Set web3, accounts, and contract to the state, and then proceed with an
-            // example of interacting with the contract's methods.
-            this.setState({web3, accounts, contract: instance});
-            // this.setState({web3, accounts, contract: instance}, this.runExample);
+            const contractArr = await Promise.all(
+                this.props.loans.map(async address => {
+                    const loan = await Loan(address);
+                    let lenderAddress = await loan.methods.lender().call();
+                    let borrowerAddress = await loan.methods.borrower().call();
+                    let contractAddress = await loan._address;
+                    return {lenderAddress, borrowerAddress, contractAddress};
+                })
+            );
+            await this.setState({loans: contractArr});
         } catch (error) {
-            // Catch any errors for any of the above operations.
-            alert(`Failed to load web3, accounts, or contract. Check console for details.`);
-            console.error(error);
+            throw error;
         }
     };
 
-    runExample = async () => {
-        const {accounts, contract} = this.state;
-
-        // Stores a given value, 5 by default
-        console.log(accounts[0]);
-        console.log(contract);
-
-        await contract.methods.createLoan().send({from: accounts[0]});
-
-        // Get the value from the contract to prove it worked.
-        // const response = await contract.methods.get().call();
-
-        // Update state with the result.
-        // this.setState({ storageValue: response });
+    renderLoans = () => {
+        return this.state.loans.map((loan, i) => {
+            return (
+                <Grid.Column key={i}>
+                    <Card fluid style={{marginTop: '28px'}}>
+                        <Card.Content>
+                            <Card.Header>Loan Title</Card.Header>
+                            <Card.Meta>{loan.contractAddress}</Card.Meta>
+                            <Card.Description>Lender: {loan.lenderAddress}</Card.Description>
+                            <Card.Description>Borrower: {loan.borrowerAddress}</Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <Link route={`/loans/${loan.contractAddress}`}>
+                                <Button basic color='blue' fluid>
+                                    View
+                                </Button>
+                            </Link>
+                        </Card.Content>
+                    </Card>
+                </Grid.Column>
+            );
+        });
     };
 
     render() {
-        // if (!this.state.web3) {
-        //     return <div>Loading Web3, accounts, and contract...</div>;
-        // }
-        this.renderLoans();
-        console.log(this.state.loans);
         return (
             <Layout>
-                <h1>Good to Go!</h1>
-                <p>Your Truffle Box is installed and ready.</p>
-                <h2>Smart Contract Example</h2>
-                <p>
-                    If your contracts compiled and migrated successfully, below will show a stored value
-                    of 5 (by default).
-                </p>
-                <p>
-                    Try changing the value stored on <strong>line 40</strong> of App.js.
-                </p>
-                <div>The stored value is: {this.state.storageValue}</div>
-                {/* {this.renderLoans()} */}
+                <Grid>
+                    <Grid.Row columns={3}>{this.renderLoans()} </Grid.Row>
+                </Grid>
             </Layout>
         );
     }

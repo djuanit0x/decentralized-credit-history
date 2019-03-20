@@ -157,36 +157,6 @@ export default class RegisterLoanForm extends Component {
     }
 }
 
-// const campaign = Loan(this.props.address);
-
-// this.setState({loading: true, errorMessage: ''});
-
-// try {
-//     const accounts = await web3.eth.getAccounts();
-//     await campaign.methods.contribute().send({
-//         from: accounts[0],
-//         value: web3.utils.toWei(this.state.value, 'ether')
-//     });
-//     console.log('Now redirecting to address');
-//     Router.replaceRoute(`/campaigns/${this.props.address}`);
-//     console.log('Just redirected');
-// } catch (err) {
-//     this.setState({errorMessage: err.message});
-// }
-
-// this.setState({loading: false, value: ''});
-
-// import React from 'react';
-// // import Layout from '../../components/Layout';
-// import RegisterLoanForm from '../../components/RegisterLoanForm';
-// export default () => {
-//     return (
-//         // <Layout>
-//             <RegisterLoanForm />
-//         // </Layout>
-//     );
-// };
-
 //         loanTitle: 'test form',
 //         borrowerAddress: '0x0bD041752FB439Bd7D43b45d2c914FcfA0dfDD8f',
 //         startDate: '2018-10-07',
