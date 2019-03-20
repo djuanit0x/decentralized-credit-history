@@ -36,7 +36,7 @@ export default class RegisterLoanForm extends Component {
                 await loanFactoryInstance.methods.createLoan().send({from: accounts[0]});
 
                 let {
-                    // loanTitle,
+                    loanTitle,
                     borrowerAddress,
                     startDate,
                     tenor,
@@ -63,7 +63,7 @@ export default class RegisterLoanForm extends Component {
                     deployedLoanContract[deployedLoanContractLength - 1]
                 );
                 await loanInstance.methods
-                    .addAllRepaymentSchedules(calculationSchedules, borrowerAddress)
+                    .addAllRepaymentSchedules(calculationSchedules, borrowerAddress, loanTitle)
                     .send({from: accounts[0]});
             } catch (error) {
                 // Catch any errors for any of the above operations.
@@ -79,7 +79,6 @@ export default class RegisterLoanForm extends Component {
             <Layout>
                 <Form onSubmit={this.onSubmit}>
                     <h2 className='ui large header'>Register a Loan</h2>
-                    {/* <div className='ui header'>Register a Loan</div> */}
                     <Form.Field>
                         <label>Loan Title</label>
                         <Input

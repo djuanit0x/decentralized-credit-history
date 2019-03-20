@@ -3,6 +3,7 @@ pragma solidity ^0.5.0;
 contract Loan {
     address public lender;
     address public borrower;
+    string public loanTitle;
     struct RePayment {
         string date;
         string balance;
@@ -38,7 +39,8 @@ contract Loan {
         borrower = _newBorrower;
     }
 
-    function addAllRepaymentSchedules(bytes32[] memory _bytes32Arr, address _newBorrower) public onlyLender minimumAndMaximumTenor(_bytes32Arr) {
+    function addAllRepaymentSchedules(bytes32[] memory _bytes32Arr, address _newBorrower, string memory _loanTitle) public onlyLender minimumAndMaximumTenor(_bytes32Arr) {
+        loanTitle = _loanTitle;
         borrower = _newBorrower;
         for (uint i = 0; i <= _bytes32Arr.length - 5; i+=5) {
             string memory date = bytes32ToString(_bytes32Arr[i]);
@@ -49,6 +51,10 @@ contract Loan {
             rePayments.push(RePayment(date, balance, payment, interest, principal, false)) - 1;
         }
         // borrowerToRePayments[borrower] = rePayments;
+    }
+
+    function getRepaymentsCount() public view returns(uint) {
+        return rePayments.length;
     }
 
     function checkRepaymentStatus(uint _month) public view returns (bool) {

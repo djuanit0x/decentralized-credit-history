@@ -9,7 +9,7 @@ import {Link} from '../routes';
 class LoanIndex extends Component {
     state = {web3: null, accounts: null, contract: null, loans: []};
 
-    static async getInitialProps(props) {
+    static async getInitialProps() {
         // const loan = Loan(props.query.address);
         let deployedLoanContract;
         try {
@@ -33,8 +33,9 @@ class LoanIndex extends Component {
                     const loan = await Loan(address);
                     let lenderAddress = await loan.methods.lender().call();
                     let borrowerAddress = await loan.methods.borrower().call();
+                    let loanTitle = await loan.methods.loanTitle().call();
                     let contractAddress = await loan._address;
-                    return {lenderAddress, borrowerAddress, contractAddress};
+                    return {lenderAddress, borrowerAddress, contractAddress, loanTitle};
                 })
             );
             await this.setState({loans: contractArr});
@@ -49,7 +50,7 @@ class LoanIndex extends Component {
                 <Grid.Column key={i}>
                     <Card fluid style={{marginTop: '28px'}}>
                         <Card.Content>
-                            <Card.Header>Loan Title</Card.Header>
+                            <Card.Header>{loan.loanTitle}</Card.Header>
                             <Card.Meta>{loan.contractAddress}</Card.Meta>
                             <Card.Description>Lender: {loan.lenderAddress}</Card.Description>
                             <Card.Description>Borrower: {loan.borrowerAddress}</Card.Description>
