@@ -67,6 +67,11 @@ contract Loan {
         rePayments[_month].monthToIsPaid = true;
     }
 
+    function markRePaymentAsUnPaid(uint _month) onlyLender public  {
+        // borrowerToRePayments[borrower][_month].monthToIsPaid = true;
+        rePayments[_month].monthToIsPaid = false;
+    }
+
     function bytes32ToString(bytes32 _data) pure public returns (string memory) {
         // create new bytes with a length of 32
         // needs to be bytes type rather than bytes32 in order to be writeable
