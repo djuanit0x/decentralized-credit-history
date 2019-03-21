@@ -15,6 +15,8 @@ export default ({
     monthToIsPaid,
     payment,
     principal,
+    loading,
+    handleLoadingChange,
     handleMonthToIsPaidChange
 }) => {
     return (
@@ -46,8 +48,10 @@ export default ({
                         fluid
                         basic
                         color='red'
+                        loading={loading}
                         onClick={async () => {
                             try {
+                                await handleLoadingChange(true, month);
                                 const loan = await Loan(loanContractAddress);
                                 const web3 = await getWeb3();
                                 const accounts = await web3.eth.getAccounts();
@@ -56,6 +60,7 @@ export default ({
                                     from: accounts[0]
                                 });
                                 await handleMonthToIsPaidChange();
+                                await handleLoadingChange(false, month);
                             } catch (err) {
                                 throw err;
                             }
@@ -68,8 +73,10 @@ export default ({
                         fluid
                         basic
                         color='green'
+                        loading={loading}
                         onClick={async () => {
                             try {
+                                await handleLoadingChange(true, month);
                                 const loan = await Loan(loanContractAddress);
                                 const web3 = await getWeb3();
                                 const accounts = await web3.eth.getAccounts();
@@ -78,6 +85,7 @@ export default ({
                                     from: accounts[0]
                                 });
                                 await handleMonthToIsPaidChange();
+                                await handleLoadingChange(false, month);
                             } catch (err) {
                                 throw err;
                             }

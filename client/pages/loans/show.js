@@ -12,7 +12,7 @@ export default class Show extends Component {
         lenderAddress: '',
         borrowerAddress: '',
         loanContractAddress: '',
-        loading: false
+        loadings: []
     };
     static async getInitialProps(props) {
         const loanContractAddress = props.query.address;
@@ -38,7 +38,8 @@ export default class Show extends Component {
             loanTitle: this.props.loanTitle,
             lenderAddress: this.props.lenderAddress,
             borrowerAddress: this.props.borrowerAddress,
-            loanContractAddress: this.props.loanContractAddress
+            loanContractAddress: this.props.loanContractAddress,
+            loadings: Array(this.props.rePayments.length).fill(false)
         });
     };
 
@@ -49,7 +50,7 @@ export default class Show extends Component {
                     key={index}
                     month={index}
                     loanContractAddress={this.state.loanContractAddress}
-                    loading={this.state.loading}
+                    loading={this.state.loadings[index]}
                     handleLoadingChange={this.handleLoadingChange}
                     handleMonthToIsPaidChange={this.handleMonthToIsPaidChange}
                     {...rePayment}
@@ -58,15 +59,18 @@ export default class Show extends Component {
         });
     };
 
-    handleLoadingChange = val => {
-        this.setState({
-            loading: val
+    handleLoadingChange = async (val, idx) => {
+        debugger;
+        const newLoadingsArr = [...this.state.loadings];
+        newLoadingsArr[idx] = val;
+        debugger;
+        await this.setState({
+            loadings: newLoadingsArr
         });
     };
 
     handleMonthToIsPaidChange = async () => {
         console.log(this.props.rePayments);
-        debugger;
         await Router.pushRoute(`/loans/${this.state.loanContractAddress}`);
         console.log(this.props.rePayments);
         await this.setState({
