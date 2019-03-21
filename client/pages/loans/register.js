@@ -5,6 +5,7 @@ import LoanFactory from '../../contracts/LoanFactory.json';
 import Loan from '../../contracts/Loan.json';
 import getWeb3 from '../../utils/getWeb3';
 import CalculateRepayments from '../../utils/calculateRepayments';
+import {Router} from '../../routes';
 
 export default class RegisterLoanForm extends Component {
     state = {
@@ -23,6 +24,7 @@ export default class RegisterLoanForm extends Component {
         event.preventDefault();
         this.setState({loading: true}, async () => {
             try {
+                this.handleLoadingChange(true);
                 const web3 = await getWeb3();
                 const accounts = await web3.eth.getAccounts();
                 const networkId = await web3.eth.net.getId();
@@ -65,13 +67,24 @@ export default class RegisterLoanForm extends Component {
                 await loanInstance.methods
                     .addAllRepaymentSchedules(calculationSchedules, borrowerAddress, loanTitle)
                     .send({from: accounts[0]});
+                this.handleLoadingChange(false);
             } catch (error) {
                 // Catch any errors for any of the above operations.
                 alert(`Failed to load web3, accounts, or contract. Check console for details.`);
                 console.error(error);
-                this.setState({loading: false});
+                this.handleLoadingChange(false);
             }
         });
+    };
+
+    handleLoadingChange = async val => {
+        await this.setState({
+            loading: val
+        });
+
+        if (!val) {
+            await Router.pushRoute(`/`);
+        }
     };
 
     render() {
@@ -147,7 +160,7 @@ export default class RegisterLoanForm extends Component {
                             onChange={event => this.setState({gracePeriod: event.target.value})}
                         />
                     </Form.Field>
-                    <Button type='submit' primary>
+                    <Button loading={this.state.loading} type='submit' primary>
                         Create
                     </Button>
                 </Form>

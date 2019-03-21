@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -292,15 +292,19 @@ var Row = semantic_ui_react_dist_commonjs_collections_Table_Table__WEBPACK_IMPOR
               return handleLoadingChange(false, month);
 
             case 18:
-              _context.next = 23;
+              _context.next = 25;
               break;
 
             case 20:
               _context.prev = 20;
               _context.t0 = _context["catch"](0);
+              _context.next = 24;
+              return handleLoadingChange(false, month);
+
+            case 24:
               throw _context.t0;
 
-            case 23:
+            case 25:
             case "end":
               return _context.stop();
           }
@@ -356,15 +360,19 @@ var Row = semantic_ui_react_dist_commonjs_collections_Table_Table__WEBPACK_IMPOR
               return handleLoadingChange(false, month);
 
             case 18:
-              _context2.next = 23;
+              _context2.next = 25;
               break;
 
             case 20:
               _context2.prev = 20;
               _context2.t0 = _context2["catch"](0);
+              _context2.next = 24;
+              return handleLoadingChange(false, month);
+
+            case 24:
               throw _context2.t0;
 
-            case 23:
+            case 25:
             case "end":
               return _context2.stop();
           }
@@ -1855,16 +1863,14 @@ function (_Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                debugger;
                 newLoadingsArr = Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_this.state.loadings);
                 newLoadingsArr[idx] = val;
-                debugger;
-                _context2.next = 6;
+                _context2.next = 4;
                 return _this.setState({
                   loadings: newLoadingsArr
                 });
 
-              case 6:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -1886,18 +1892,16 @@ function (_Component) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              console.log(_this.props.rePayments);
-              _context3.next = 3;
+              _context3.next = 2;
               return _routes__WEBPACK_IMPORTED_MODULE_18__["Router"].pushRoute("/loans/".concat(_this.state.loanContractAddress));
 
-            case 3:
-              console.log(_this.props.rePayments);
-              _context3.next = 6;
+            case 2:
+              _context3.next = 4;
               return _this.setState({
                 rePayments: _this.props.rePayments
               });
 
-            case 6:
+            case 4:
             case "end":
               return _context3.stop();
           }
@@ -2161,7 +2165,7 @@ var _contracts_Loan_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/_
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!***********************************!*\
   !*** multi ./pages/loans/show.js ***!
   \***********************************/

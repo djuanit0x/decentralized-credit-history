@@ -62,6 +62,7 @@ export default ({
                                 await handleMonthToIsPaidChange();
                                 await handleLoadingChange(false, month);
                             } catch (err) {
+                                await handleLoadingChange(false, month);
                                 throw err;
                             }
                         }}
@@ -87,6 +88,7 @@ export default ({
                                 await handleMonthToIsPaidChange();
                                 await handleLoadingChange(false, month);
                             } catch (err) {
+                                await handleLoadingChange(false, month);
                                 throw err;
                             }
                         }}

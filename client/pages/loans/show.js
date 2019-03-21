@@ -60,19 +60,15 @@ export default class Show extends Component {
     };
 
     handleLoadingChange = async (val, idx) => {
-        debugger;
         const newLoadingsArr = [...this.state.loadings];
         newLoadingsArr[idx] = val;
-        debugger;
         await this.setState({
             loadings: newLoadingsArr
         });
     };
 
     handleMonthToIsPaidChange = async () => {
-        console.log(this.props.rePayments);
         await Router.pushRoute(`/loans/${this.state.loanContractAddress}`);
-        console.log(this.props.rePayments);
         await this.setState({
             rePayments: this.props.rePayments
         });

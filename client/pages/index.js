@@ -72,7 +72,7 @@ class LoanIndex extends Component {
         return (
             <Layout>
                 <Grid>
-                    <Grid.Row columns={3}>{this.renderLoans()} </Grid.Row>
+                    <Grid.Row columns={2}>{this.renderLoans()} </Grid.Row>
                 </Grid>
             </Layout>
         );

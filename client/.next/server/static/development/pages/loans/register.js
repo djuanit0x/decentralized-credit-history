@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1410,6 +1410,9 @@ var _contracts_LoanFactory_json__WEBPACK_IMPORTED_MODULE_12___namespace = /*#__P
 var _contracts_Loan_json__WEBPACK_IMPORTED_MODULE_13___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../contracts/Loan.json */ "./contracts/Loan.json", 1);
 /* harmony import */ var _utils_getWeb3__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../utils/getWeb3 */ "./utils/getWeb3.js");
 /* harmony import */ var _utils_calculateRepayments__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../utils/calculateRepayments */ "./utils/calculateRepayments.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../routes */ "./routes.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_16__);
+
 
 
 
@@ -1483,68 +1486,71 @@ function (_Component) {
                       switch (_context.prev = _context.next) {
                         case 0:
                           _context.prev = 0;
-                          _context.next = 3;
+
+                          _this.handleLoadingChange(true);
+
+                          _context.next = 4;
                           return Object(_utils_getWeb3__WEBPACK_IMPORTED_MODULE_14__["default"])();
 
-                        case 3:
+                        case 4:
                           web3 = _context.sent;
-                          _context.next = 6;
+                          _context.next = 7;
                           return web3.eth.getAccounts();
 
-                        case 6:
+                        case 7:
                           accounts = _context.sent;
-                          _context.next = 9;
+                          _context.next = 10;
                           return web3.eth.net.getId();
 
-                        case 9:
+                        case 10:
                           networkId = _context.sent;
                           deployedNetwork = _contracts_LoanFactory_json__WEBPACK_IMPORTED_MODULE_12__.networks[networkId];
                           loanFactoryInstance = new web3.eth.Contract(_contracts_LoanFactory_json__WEBPACK_IMPORTED_MODULE_12__.abi, deployedNetwork.address);
-                          _context.next = 14;
+                          _context.next = 15;
                           return loanFactoryInstance.methods.createLoan().send({
                             from: accounts[0]
                           });
 
-                        case 14:
+                        case 15:
                           _this$state = _this.state, loanTitle = _this$state.loanTitle, borrowerAddress = _this$state.borrowerAddress, startDate = _this$state.startDate, tenor = _this$state.tenor, interestRatePerYear = _this$state.interestRatePerYear, balanceRequested = _this$state.balanceRequested, origination = _this$state.origination, gracePeriod = _this$state.gracePeriod;
                           calculationSchedules = Object(_utils_calculateRepayments__WEBPACK_IMPORTED_MODULE_15__["default"])(startDate, tenor, interestRatePerYear, balanceRequested, origination, gracePeriod);
-                          _context.next = 18;
+                          _context.next = 19;
                           return loanFactoryInstance.methods.getDeployedLoans().call();
 
-                        case 18:
+                        case 19:
                           deployedLoanContract = _context.sent;
-                          _context.next = 21;
+                          _context.next = 22;
                           return loanFactoryInstance.methods.getDeployedLoansLength().call();
 
-                        case 21:
+                        case 22:
                           deployedLoanContractLength = _context.sent;
                           loanInstance = new web3.eth.Contract(_contracts_Loan_json__WEBPACK_IMPORTED_MODULE_13__.abi, deployedLoanContract[deployedLoanContractLength - 1]);
-                          _context.next = 25;
+                          _context.next = 26;
                           return loanInstance.methods.addAllRepaymentSchedules(calculationSchedules, borrowerAddress, loanTitle).send({
                             from: accounts[0]
                           });
 
-                        case 25:
-                          _context.next = 32;
+                        case 26:
+                          _this.handleLoadingChange(false);
+
+                          _context.next = 34;
                           break;
 
-                        case 27:
-                          _context.prev = 27;
+                        case 29:
+                          _context.prev = 29;
                           _context.t0 = _context["catch"](0);
                           // Catch any errors for any of the above operations.
                           alert("Failed to load web3, accounts, or contract. Check console for details.");
                           console.error(_context.t0);
 
-                          _this.setState({
-                            loading: false
-                          });
+                          _this.handleLoadingChange(false);
 
-                        case 32:
+                        case 34:
                         case "end":
                           return _context.stop();
                       }
                     }
-                  }, _callee, this, [[0, 27]]);
+                  }, _callee, this, [[0, 29]]);
                 })));
 
               case 2:
@@ -1557,6 +1563,43 @@ function (_Component) {
 
       return function (_x) {
         return _ref.apply(this, arguments);
+      };
+    }());
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this)), "handleLoadingChange",
+    /*#__PURE__*/
+    function () {
+      var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+      /*#__PURE__*/
+      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(val) {
+        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this.setState({
+                  loading: val
+                });
+
+              case 2:
+                if (val) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                _context3.next = 5;
+                return _routes__WEBPACK_IMPORTED_MODULE_16__["Router"].pushRoute("/");
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      return function (_x2) {
+        return _ref3.apply(this, arguments);
       };
     }());
 
@@ -1641,6 +1684,7 @@ function (_Component) {
           });
         }
       })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_10__["Button"], {
+        loading: this.state.loading,
         type: "submit",
         primary: true
       }, "Create")));
@@ -1815,7 +1859,7 @@ function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!***************************************!*\
   !*** multi ./pages/loans/register.js ***!
   \***************************************/
