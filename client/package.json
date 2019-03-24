@@ -17,11 +17,10 @@
     "main": "truffle-config.js",
     "scripts": {
         "start": "node server.js",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
+        "build": "next build",
+        "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "next",
-        "dev-server": "node server.js"
+        "heroku-postbuild": "node server.js"
     },
     "eslintConfig": {
         "extends": "react-app"
