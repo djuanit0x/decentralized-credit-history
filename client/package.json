@@ -15,7 +15,7 @@
         "web3": "^1.0.0-beta.37"
     },
     "scripts": {
-        "start": "node server.js -p 3000",
+        "start": "node server.js",
         "build": "next build",
         "dev": "node server.js -p 3000",
         "heroku-postbuild": "next build"
