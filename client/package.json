@@ -1,6 +1,6 @@
 {
     "name": "loan-ethereum-client",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
     "dependencies": {
         "@danacita/loanjs": "^1.1.3",
@@ -14,13 +14,11 @@
         "semantic-ui-react": "^0.86.0",
         "web3": "^1.0.0-beta.37"
     },
-    "main": "truffle-config.js",
     "scripts": {
-        "start": "node server.js",
+        "start": "node server.js -p 3000",
         "build": "next build",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "next",
-        "heroku-postbuild": "node server.js"
+        "dev": "node server.js -p 3000",
+        "heroku-postbuild": "next build"
     },
     "eslintConfig": {
         "extends": "react-app"
