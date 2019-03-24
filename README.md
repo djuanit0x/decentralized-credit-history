@@ -1,2 +1,2 @@
-## A DAPP to track a repayment schedule for a particular loan.
+## A DAPP to give students credit history on the blockchain, through a smart contract.
 Built with ethereum and react (in progress)
