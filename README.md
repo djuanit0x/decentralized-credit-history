@@ -1,2 +1,2 @@
-## A DAPP to track a repayment schedule for a particular loan.
-Built with ethereum and react (in progress)
+## A DAPP to give students credit history on the blockchain, through a smart contract.
+Built with Truffle and react (in progress)
