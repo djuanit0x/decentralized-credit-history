@@ -21,7 +21,6 @@ const getWeb3 = async () => {
             console.log('Injected web3 detected.');
             return web3;
         }
-
     } else {
         // Fallback to localhost; use dev console port by default...
         if (process.env.NODE_ENV === 'development') {

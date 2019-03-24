@@ -15,7 +15,7 @@
         "web3": "^1.0.0-beta.37"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "node server.js",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -24,6 +24,9 @@
     },
     "eslintConfig": {
         "extends": "react-app"
+    },
+    "engines": {
+        "node": "v8.11.3"
     },
     "browserslist": [
         ">0.2%",
