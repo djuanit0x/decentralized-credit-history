@@ -19,6 +19,5 @@ export default (startDate, tenor, interestRatePerYear, balanceRequested, origina
         repaymentSchedulesHexArr.push('0x' + new Buffer(String(schedules[i].interest)).toString('hex'));
         repaymentSchedulesHexArr.push('0x' + new Buffer(String(schedules[i].principal)).toString('hex'));
     }
-    debugger;
     return repaymentSchedulesHexArr;
 };

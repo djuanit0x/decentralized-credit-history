@@ -168,12 +168,3 @@ export default class RegisterLoanForm extends Component {
         );
     }
 }
-
-//         loanTitle: 'test form',
-//         borrowerAddress: '0x0bD041752FB439Bd7D43b45d2c914FcfA0dfDD8f',
-//         startDate: '2018-10-07',
-//         tenor: '12',
-//         interestRatePerYear: '24',
-//         balanceRequested: '1500000',
-//         origination: '3',
-//         gracePeriod: '0'

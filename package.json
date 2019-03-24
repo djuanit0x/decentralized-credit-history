@@ -1,0 +1,25 @@
+{
+  "name": "credit-line-smart-contract-react",
+  "version": "1.0.0",
+  "description": "Built with ethereum and react (in progress)",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennisjuanito/loan-ethereum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennisjuanito/loan-ethereum/issues"
+  },
+  "homepage": "https://github.com/dennisjuanito/loan-ethereum#readme",
+  "dependencies": {
+    "truffle-hdwallet-provider": "^1.0.5"
+  }
+}
