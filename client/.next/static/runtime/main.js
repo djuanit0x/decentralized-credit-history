@@ -7948,7 +7948,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      source_map_support_1.rewriteStacktrace(error, "/Users/dju/Documents/inside document/danacita/credit-line-smart-contract-react/client/.next");
+      source_map_support_1.rewriteStacktrace(error, "/Users/dju/Documents/inside document/danacita/credit-line-client/client/.next");
       return error;
     }
   };
@@ -16043,23 +16043,23 @@ module.exports = __webpack_require__(/*! ./dist/client/router */ "./node_modules
 
 /***/ "./node_modules/object-assign/index.js":
 /*!***************************************************************************************************!*\
-  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_3441eac87b3ea3a7c928 ***!
+  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_69ad4e8818f4e50f8e17 ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_3441eac87b3ea3a7c928 */ "dll-reference dll_3441eac87b3ea3a7c928"))("./node_modules/object-assign/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_69ad4e8818f4e50f8e17 */ "dll-reference dll_69ad4e8818f4e50f8e17"))("./node_modules/object-assign/index.js");
 
 /***/ }),
 
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!*********************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_3441eac87b3ea3a7c928 ***!
+  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_69ad4e8818f4e50f8e17 ***!
   \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_3441eac87b3ea3a7c928 */ "dll-reference dll_3441eac87b3ea3a7c928"))("./node_modules/prop-types/checkPropTypes.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_69ad4e8818f4e50f8e17 */ "dll-reference dll_69ad4e8818f4e50f8e17"))("./node_modules/prop-types/checkPropTypes.js");
 
 /***/ }),
 
@@ -16667,12 +16667,12 @@ if (true) {
 
 /***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
 /*!*******************************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_3441eac87b3ea3a7c928 ***!
+  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_69ad4e8818f4e50f8e17 ***!
   \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_3441eac87b3ea3a7c928 */ "dll-reference dll_3441eac87b3ea3a7c928"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_69ad4e8818f4e50f8e17 */ "dll-reference dll_69ad4e8818f4e50f8e17"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
 
 /***/ }),
 
@@ -16887,12 +16887,12 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_3441eac87b3ea3a7c928 ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_69ad4e8818f4e50f8e17 ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_3441eac87b3ea3a7c928 */ "dll-reference dll_3441eac87b3ea3a7c928"))("./node_modules/react-dom/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_69ad4e8818f4e50f8e17 */ "dll-reference dll_69ad4e8818f4e50f8e17"))("./node_modules/react-dom/index.js");
 
 /***/ }),
 
@@ -17134,12 +17134,12 @@ if (false) {} else {
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_3441eac87b3ea3a7c928 ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_69ad4e8818f4e50f8e17 ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_3441eac87b3ea3a7c928 */ "dll-reference dll_3441eac87b3ea3a7c928"))("./node_modules/react/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_69ad4e8818f4e50f8e17 */ "dll-reference dll_69ad4e8818f4e50f8e17"))("./node_modules/react/index.js");
 
 /***/ }),
 
@@ -18009,19 +18009,19 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/dju/Documents/inside document/danacita/credit-line-smart-contract-react/client/node_modules/next/dist/client/next-dev */"./node_modules/next/dist/client/next-dev.js");
+module.exports = __webpack_require__(/*! /Users/dju/Documents/inside document/danacita/credit-line-client/client/node_modules/next/dist/client/next-dev */"./node_modules/next/dist/client/next-dev.js");
 
 
 /***/ }),
 
-/***/ "dll-reference dll_3441eac87b3ea3a7c928":
+/***/ "dll-reference dll_69ad4e8818f4e50f8e17":
 /*!*******************************************!*\
-  !*** external "dll_3441eac87b3ea3a7c928" ***!
+  !*** external "dll_69ad4e8818f4e50f8e17" ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = dll_3441eac87b3ea3a7c928;
+module.exports = dll_69ad4e8818f4e50f8e17;
 
 /***/ })
 

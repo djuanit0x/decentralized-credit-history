@@ -1,23 +1,16 @@
 import Web3 from 'web3';
-import getConfig from 'next/config';
+// import getConfig from 'next/config';
 
 const getWeb3 = async () => {
     if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
         if (window.ethereum) {
             // Modern dapp browsers...
             const web3 = new Web3(window.ethereum);
-            try {
-                // Request account access if needed
-                await window.ethereum.enable();
-                // Acccounts now exposed
-                return web3;
-            } catch (error) {
-                throw error;
-            }
+            return web3;
         } else if (window.web3) {
             // Legacy dapp browsers
             // Use Mist/MetaMask's provider.
-            const web3 = window.web3;
+            const web3 = new Web3(window.web3.currentProvider);
             console.log('Injected web3 detected.');
             return web3;
         }
@@ -28,11 +21,10 @@ const getWeb3 = async () => {
             const web3 = new Web3(provider);
             console.log('No web3 instance injected, using Local web3.');
             return web3;
+            // `https://rinkeby.infura.io/v3/${process.env.INFURA_RINKEBY_END_POINT_2}`
         } else {
-            const {publicRuntimeConfig} = getConfig();
-            const {RINKEBY_API} = publicRuntimeConfig;
             const provider = new Web3.providers.HttpProvider(
-                `https://rinkeby.infura.io/v3/${RINKEBY_API}`
+                `https://rinkeby.infura.io/v3/3d5c47b108a844279f60a152928ac80d`
             );
             const web3 = new Web3(provider);
             return web3;

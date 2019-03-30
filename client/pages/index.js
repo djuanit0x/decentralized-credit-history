@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LoanFactory from '../contracts/LoanFactory.json';
-import Loan from '../../client/utils/loan';
+import Loan from '../utils/loan';
 import getWeb3 from '../utils/getWeb3';
 import Layout from '../components/Layout';
 import {Card, Grid, Button} from 'semantic-ui-react';
@@ -10,7 +10,6 @@ class LoanIndex extends Component {
     state = {web3: null, accounts: null, contract: null, loans: []};
 
     static async getInitialProps() {
-        // const loan = Loan(props.query.address);
         let deployedLoanContract;
         try {
             const web3 = await getWeb3();
@@ -21,7 +20,6 @@ class LoanIndex extends Component {
         } catch (error) {
             throw error;
         }
-
         return {
             loans: deployedLoanContract
         };
