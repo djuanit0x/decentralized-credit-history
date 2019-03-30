@@ -1,8 +1,6 @@
 const path = require('path');
 var HDWalletProvider = require('truffle-hdwallet-provider');
 
-console.log(process.env.MNEMONIC_METAMASK_2);
-console.log(process.env.INFURA_RINKEBY_END_POINT_2);
 module.exports = {
     // See <http://truffleframework.com/docs/advanced/configuration>
     // to customize your Truffle configuration!

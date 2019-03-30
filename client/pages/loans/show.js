@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Card, Grid, CardContent} from 'semantic-ui-react';
+import {Table, Card} from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import RePaymentRow from '../../components/RepaymentsRow';
 import Loan from '../../utils/loan';

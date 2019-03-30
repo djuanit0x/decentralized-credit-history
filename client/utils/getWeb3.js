@@ -1,5 +1,4 @@
 import Web3 from 'web3';
-// import getConfig from 'next/config';
 
 const getWeb3 = async () => {
     if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
@@ -21,7 +20,6 @@ const getWeb3 = async () => {
             const web3 = new Web3(provider);
             console.log('No web3 instance injected, using Local web3.');
             return web3;
-            // `https://rinkeby.infura.io/v3/${process.env.INFURA_RINKEBY_END_POINT_2}`
         } else {
             const provider = new Web3.providers.HttpProvider(
                 `https://rinkeby.infura.io/v3/3d5c47b108a844279f60a152928ac80d`
