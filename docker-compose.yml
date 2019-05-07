@@ -1,0 +1,50 @@
+version: "3.2"
+services:
+    ganache:
+        image: "trufflesuite/ganache-cli"
+        command: ganache-cli -i 1557054392161 -h 0.0.0.0 --account="0x18f502cd60ec206333d5c8e1243d986935b18dd57c6d0e8fbfbf46d89fd296f8,500000000000000000000" --account="0x1dc24cf9e664a04c17435fe763fa5fb63df81225fb281a78700fc734ef25cbc1,500000000000000000000"
+        ports:
+            - "8545:8545"
+    truffle:
+        build:
+            dockerfile: Dockerfile.dev
+            context: .
+        volumes:
+            - type: volume
+              source: truffle_node_modules
+              target: /app/node_modules
+            - type: volume
+              source: build_contracts
+              target: /app/client/contracts
+        depends_on:
+            - ganache
+    client_loan:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./client
+        ports:
+            - "3000:3000"
+        depends_on:
+            - ganache
+            - truffle
+        env_file:
+            - .env_file_client_loan_default
+        # Enviromnment for development
+        # environment:
+        #     - NODE_ENV=development
+        #     - PROVIDER_HTTP_URL=http://ganache:8545
+        #     - PORT=3000
+        volumes:
+            - type: volume
+              source: client_node_modules
+              target: /app/node_modules
+            - type: volume
+              source: build_contracts
+              target: /app/contracts
+            - type: bind
+              source: ./client
+              target: /app
+volumes:
+    truffle_node_modules:
+    client_node_modules:
+    build_contracts:

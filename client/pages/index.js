@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import LoanFactory from '../contracts/LoanFactory.json';
-import Loan from '../utils/loan';
-import getWeb3 from '../utils/getWeb3';
-import Layout from '../components/Layout';
-import {Card, Grid, Button} from 'semantic-ui-react';
-import {Link} from '../routes';
+import React, {Component} from "react";
+import LoanFactory from "../contracts/LoanFactory.json";
+import Loan from "../utils/loan";
+import getWeb3 from "../utils/getWeb3";
+import Layout from "../components/Layout";
+import {Card, Grid, Button} from "semantic-ui-react";
+import {Link} from "../routes";
 
 class LoanIndex extends Component {
     state = {web3: null, accounts: null, contract: null, loans: []};
@@ -21,7 +21,7 @@ class LoanIndex extends Component {
             throw error;
         }
         return {
-            loans: deployedLoanContract
+            loans: deployedLoanContract ? deployedLoanContract : []
         };
     }
     componentDidMount = async () => {
@@ -46,7 +46,7 @@ class LoanIndex extends Component {
         return this.state.loans.map((loan, i) => {
             return (
                 <Grid.Column key={i}>
-                    <Card fluid style={{marginTop: '28px'}}>
+                    <Card fluid style={{marginTop: "28px"}}>
                         <Card.Content>
                             <Card.Header>{loan.loanTitle}</Card.Header>
                             <Card.Meta>{loan.contractAddress}</Card.Meta>

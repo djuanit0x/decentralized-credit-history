@@ -1,21 +1,20 @@
-const {createServer} = require('http');
-const next = require('next');
+const {createServer} = require("http");
+const next = require("next");
 // const express = require('express');
 
 const app = next({
-    dev: process.env.NODE_ENV !== 'production'
+    dev: process.env.NODE_ENV !== "production"
 });
-
-const routes = require('./routes');
+const routes = require("./routes");
 const handler = routes.getRequestHandler(app);
 
 app.prepare().then(() => {
     createServer(handler).listen(process.env.PORT || 3000, err => {
         if (err) throw err;
-        console.log('Ready on localhost:3000');
+        console.log("Ready on localhost:3000");
     });
 });
-
+// /docker run -p 3000:3000 -e NODE_ENV="production" -e PROVIDER_HTTP_URL="http://ganache:8545" -e PORT=3000 60029a610328
 // Express Implementation
 
 // const express = require('express');

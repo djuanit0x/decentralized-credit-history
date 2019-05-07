@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
-import {Form, Input, Message, Button} from 'semantic-ui-react';
-import Layout from '../../components/Layout';
-import LoanFactory from '../../contracts/LoanFactory.json';
-import Loan from '../../contracts/Loan.json';
-import getWeb3 from '../../utils/getWeb3';
-import CalculateRepayments from '../../utils/calculateRepayments';
-import {Router} from '../../routes';
+import React, {Component} from "react";
+import {Form, Input, Message, Button} from "semantic-ui-react";
+import Layout from "../../components/Layout";
+import LoanFactory from "../../contracts/LoanFactory.json";
+import Loan from "../../contracts/Loan.json";
+import getWeb3 from "../../utils/getWeb3";
+import CalculateRepayments from "../../utils/calculateRepayments";
+import {Router} from "../../routes";
 
 export default class RegisterLoanForm extends Component {
     state = {
         loading: false,
-        loanTitle: '',
-        borrowerAddress: '',
-        startDate: '',
-        tenor: '',
-        interestRatePerYear: '',
-        balanceRequested: '',
-        origination: '',
-        gracePeriod: ''
+        loanTitle: "",
+        borrowerAddress: "",
+        startDate: "",
+        tenor: "",
+        interestRatePerYear: "",
+        balanceRequested: "",
+        origination: "",
+        gracePeriod: ""
     };
 
     onSubmit = async event => {
@@ -34,9 +34,7 @@ export default class RegisterLoanForm extends Component {
                     LoanFactory.abi,
                     deployedNetwork.address
                 );
-
                 await loanFactoryInstance.methods.createLoan().send({from: accounts[0]});
-
                 let {
                     loanTitle,
                     borrowerAddress,
@@ -60,6 +58,7 @@ export default class RegisterLoanForm extends Component {
                 const deployedLoanContractLength = await loanFactoryInstance.methods
                     .getDeployedLoansLength()
                     .call();
+
                 const loanInstance = new web3.eth.Contract(
                     Loan.abi,
                     deployedLoanContract[deployedLoanContractLength - 1]
